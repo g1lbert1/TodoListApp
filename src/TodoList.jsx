@@ -1,4 +1,3 @@
-// ToDoList.jsx
 const ToDoList = ({ todos, deleteTodo, toggleCompleted }) => {
   const today = new Date();
 
