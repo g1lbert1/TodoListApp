@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-
-const ToDoList = ({ todos, setTodos, deleteTodo, toggleCompleted }) => {
+// ToDoList.jsx
+const ToDoList = ({ todos, deleteTodo, toggleCompleted }) => {
   const today = new Date();
 
   return (
@@ -25,47 +24,50 @@ const ToDoList = ({ todos, setTodos, deleteTodo, toggleCompleted }) => {
                     : "border-gray-200 hover:border-blue-300"
                 }`}
               >
-                <h2
-                  className={`text-xl font-semibold ${
-                    alreadyDue ? "text-red-600" : "text-gray-800"
-                  }`}
-                >
-                  {item.title}
-                </h2>
-                <p className="text-gray-600 mt-1">{item.description}</p>
+                <div className="flex items-start gap-3">
+                  {/* --- Checkbox toggle --- */}
+                  <input
+                    type="checkbox"
+                    className="mt-1 h-5 w-5 accent-green-600 cursor-pointer"
+                    checked={item.completed}
+                    onChange={() => toggleCompleted(item)}
+                    aria-label={`Toggle completion for ${item.title}`}
+                  />
 
-                <p
-                  className={`mt-2 text-sm ${
-                    alreadyDue ? "text-red-500 font-semibold" : "text-gray-500"
-                  }`}
-                >
-                  Due: {item.due}
-                </p>
+                  <div className="flex-1">
+                    <h2
+                      className={`text-xl font-semibold ${
+                        alreadyDue ? "text-red-600" : "text-gray-800"
+                      } ${item.completed ? "line-through text-gray-500" : ""}`}
+                    >
+                      {item.title}
+                    </h2>
 
-                <p className="text-gray-700 mt-2">
-                  Completed:{" "}
-                  <span
-                    className={`font-semibold ${
-                      item.completed ? "text-green-600" : "text-yellow-600"
-                    }`}
-                  >
-                    {item.completed ? "Yes" : "No"}
-                  </span>
-                </p>
+                    <p
+                      className={`mt-1 ${
+                        item.completed ? "line-through text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      {item.description}
+                    </p>
 
-                <div className="flex gap-3 mt-4">
-                  <button
-                    onClick={() => deleteTodo(item.id)}
-                    className="px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => toggleCompleted(item)}
-                    className="px-4 py-2 text-sm font-medium bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
-                  >
-                    Complete
-                  </button>
+                    <p
+                      className={`mt-2 text-sm ${
+                        alreadyDue ? "text-red-500 font-semibold" : "text-gray-500"
+                      }`}
+                    >
+                      Due: {item.due}
+                    </p>
+
+                    <div className="flex gap-3 mt-4">
+                      <button
+                        onClick={() => deleteTodo(item.id)}
+                        className="px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
