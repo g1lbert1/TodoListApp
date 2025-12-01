@@ -1,9 +1,9 @@
 
-const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
+const CompletedTodos = ({ todos, toggleCompleted, deleteTodo, setTodoBeingEdited }) => {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-2xl mt-10">
       <h1 className="text-3xl font-bold text-center mb-6 text-green-700">
-        ✅ Completed Todos
+         Completed Todos
       </h1>
 
       <div className="flex flex-col gap-5">
@@ -11,7 +11,7 @@ const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
           .filter((item) => item.completed)
           .map((item) => (
             <div
-              key={item.id}
+              key={item._id}
               className="border rounded-xl p-4 bg-green-50 border-green-200 hover:border-green-400 transition-all"
             >
               <h2 className="text-xl font-semibold text-green-800">
@@ -36,6 +36,22 @@ const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
                 >
                   Mark Incomplete
                 </button>
+                <button
+                  onClick={() => deleteTodo(item._id)}
+                  className="px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 transition cursor-pointer"
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => {
+                    setTodoBeingEdited(item)
+                    console.log("Edit clicked", item);
+                  }}
+                  className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+                >
+                  Edit
+                </button>
+
               </div>
             </div>
           ))}
