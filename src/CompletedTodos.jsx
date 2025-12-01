@@ -26,7 +26,7 @@ const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
               </p>
 
               <p className="text-green-600 font-semibold mt-2">
-                Completed: Yes 🎉
+                Completed: Yes 
               </p>
 
               <div className="flex gap-3 mt-4">
@@ -42,7 +42,7 @@ const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
 
         {todos.filter((item) => item.completed).length === 0 && (
           <p className="text-center text-gray-500 italic">
-            No completed tasks yet.
+            No completed tasks yet
           </p>
         )}
       </div>
@@ -50,4 +50,4 @@ const CompletedTodos = ({ todos, setTodos, toggleCompleted }) => {
   );
 };
 
-export default CompletedTodos;
+export default CompletedTodos
